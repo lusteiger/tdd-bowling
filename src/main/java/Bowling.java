@@ -3,6 +3,11 @@ public class Bowling {
 
     public int Computing(int[] record) {
         int score = 0;
+
+        if (record.length > 20 || record.length < 12) {
+            throw new IllegalArgumentException();
+        }
+
         if (record.length == 12) {
             for (int i = 0; i < record.length - 2; i++) {
                 score += record[i] + record[i + 1] + record[i + 2];
@@ -21,6 +26,7 @@ public class Bowling {
     public int HasStrikePin(int[] record) {
         int score = 0;
         int frame = 0;
+        
         for (int i = 0; i < record.length; i++) {
             if (record[i] == 10) {
                 score += record[i] + record[i + 1] + record[i + 2];
@@ -37,16 +43,18 @@ public class Bowling {
             if (frame == 10)
                 break;
         }
+
         return score;
-
-
     }
 
     public int AllSparePin(int[] record) {
+        int score = 0;
 
+        for (int i = 0; i < record.length; ) {
+            score += record[i] + record[i + 1];
+            i = i + 2;
+        }
 
-
-
-        return 0;
+        return score;
     }
 }
